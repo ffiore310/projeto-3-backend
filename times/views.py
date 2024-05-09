@@ -8,7 +8,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import UserProfile
+from .models import UserProfile, Time
+from .serializers import TimeSerializer
 
 @api_view(['POST'])
 # @permission_classes([AllowAny])
@@ -58,3 +59,9 @@ def api_notes(request):
 
     serialized_note = NoteSerializer(notes, many=True)
     return Response(serialized_note.data)
+
+@api_view(['GET', 'POST'])
+def api_favoritos(request, note_id):
+    times = Time.objects.all()
+    serialized_time = TimeSerializer(times, many=True)
+    return Response(serialized_time.data)
