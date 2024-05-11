@@ -7,8 +7,4 @@ class Time(models.Model):
     content = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-class UserProfile(models.Model):
-    name = models.CharField(max_length=200)
-    email = models.EmailField()
-    password = models.CharField(max_length=200)
     
