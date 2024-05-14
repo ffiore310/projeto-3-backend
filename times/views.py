@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from .models import Time
 from .serializers import TimeSerializer
+import requests
 
 @api_view(['POST'])
 def api_user(request):
@@ -57,7 +58,19 @@ def api_soccer(request):
    headers = {"accept": "application/json"}
 
 
-   response = request.get(url, headers=headers)
+   response = requests.get(url, headers=headers)
 
 
    return Response(response.json())
+
+@api_view(['GET'])
+def api_soccer_table(request):
+    
+   url = "https://api.sportradar.com/soccer/trial/v4/en/seasons/sr%3Aseason%3A113943/form_standings.json?api_key=o4FFngW73VpSgSoIadrB8seMLGUwvok1n5HNY8Zc"
+
+   headers = {"accept": "application/json"}
+
+   response = requests.get(url, headers=headers)
+
+   return Response(response.json())
+
