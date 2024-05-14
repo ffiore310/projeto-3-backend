@@ -46,3 +46,18 @@ def api_favoritos(request, note_id):
     times = Time.objects.all()
     serialized_time = TimeSerializer(times, many=True)
     return Response(serialized_time.data)
+
+@api_view(['GET'])
+def api_soccer(request):
+
+
+   url = "https://api.sportradar.com/soccer/trial/v4/en/seasons/sr%3Aseason%3A113943/competitors.json?api_key="
+
+
+   headers = {"accept": "application/json"}
+
+
+   response = request.get(url, headers=headers)
+
+
+   return Response(response.json())
