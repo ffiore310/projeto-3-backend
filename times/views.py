@@ -52,7 +52,7 @@ def api_favoritos(request, note_id):
 def api_soccer(request):
 
 
-   url = "https://api.sportradar.com/soccer/trial/v4/en/seasons/sr%3Aseason%3A113943/competitors.json?api_key="
+   url = "https://api.sportradar.com/soccer/trial/v4/en/seasons/sr%3Aseason%3A113943/competitors.json?api_key=o4FFngW73VpSgSoIadrB8seMLGUwvok1n5HNY8Zc"
 
 
    headers = {"accept": "application/json"}
