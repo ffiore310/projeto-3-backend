@@ -74,3 +74,20 @@ def api_soccer_table(request):
 
    return Response(response.json())
 
+@api_view(['GET', 'POST'])
+def api_favorita_time(request):
+    time = Time()
+    if request.method == 'POST':
+        filtro = Time.objects.filter(name=request.data['name'])
+        if filtro.exists():
+            pass
+        else:
+            time.name = request.data
+            time.save()
+
+
+    estados = Time.objects.all()
+
+    serialized_estado = TimeSerializer(estados, many=True)
+    return Response(serialized_estado.data)
+
