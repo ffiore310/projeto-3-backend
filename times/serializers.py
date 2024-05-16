@@ -5,4 +5,4 @@ from .models import Time
 class TimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Time
-        fields = ['id', 'title', 'content']
+        fields = ['id', 'title']

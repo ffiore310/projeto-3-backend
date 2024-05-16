@@ -75,18 +75,21 @@ def api_soccer_games(request):
    return Response(response.json())
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def api_favorita_time(request):
     time = Time()
     if request.method == 'POST':
-        filtro = Time.objects.filter(name=request.data['name'])
+        print(request.user)
+        filtro = Time.objects.filter(title=request.data['name'],user=request.user)
         if filtro.exists():
             pass
         else:
-            time.name = request.data
+            time.title = request.data["name"]
+            time.user = request.user
             time.save()
 
 
-    estados = Time.objects.all()
+    estados = Time.objects.filter(user=request.user)
 
     serialized_estado = TimeSerializer(estados, many=True)
     return Response(serialized_estado.data)
