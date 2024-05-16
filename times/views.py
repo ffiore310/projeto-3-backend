@@ -90,3 +90,14 @@ def api_favorita_time(request):
 
     serialized_estado = TimeSerializer(estados, many=True)
     return Response(serialized_estado.data)
+
+@api_view(['GET'])
+def api_soccer_table(request):
+    
+   url = "https://api.sportradar.com/soccer/trial/v4/en/seasons/sr%3Aseason%3A113943/form_standings.json?api_key=o4FFngW73VpSgSoIadrB8seMLGUwvok1n5HNY8Zc"
+
+   headers = {"accept": "application/json"}
+
+   response = requests.get(url, headers=headers)
+
+   return Response(response.json())
