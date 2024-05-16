@@ -74,3 +74,14 @@ def api_soccer_table(request):
 
    return Response(response.json())
 
+@api_view(['GET'])
+def api_soccer_games(request):
+    
+   url = "https://api.sportradar.com/soccer/trial/v4/en/seasons/sr%3Aseason%3A113943/probabilities.json?api_key=o4FFngW73VpSgSoIadrB8seMLGUwvok1n5HNY8Zc"
+
+   headers = {"accept": "application/json"}
+
+   response = requests.get(url, headers=headers)
+
+   return Response(response.json())
+
