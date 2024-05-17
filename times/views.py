@@ -88,7 +88,6 @@ def api_favorita_time(request):
             time.user = request.user
             time.save()
 
-
     estados = Time.objects.filter(user=request.user)
 
     serialized_estado = TimeSerializer(estados, many=True)
@@ -104,3 +103,16 @@ def api_soccer_table(request):
    response = requests.get(url, headers=headers)
 
    return Response(response.json())
+
+@api_view(['GET', 'DELETE'])
+def api_time2(request):
+    print(request.data)
+    estado = Time.objects.get(title=request.data["name"]['title'],user=request.user)
+    print(estado)
+    # estado = estado.objects.all()
+    
+    if request.method == 'DELETE':
+        estado.delete()
+
+    serialized_estado = TimeSerializer(estado)
+    return Response(serialized_estado.data)
